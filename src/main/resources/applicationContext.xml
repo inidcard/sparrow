@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd">
+    
+    <!-- 自动扫描quick4j包 ,将带有注解的类 纳入spring容器管理 -->
+	<context:component-scan base-package="com.sltas.web.mer,com.sltas.application.api.subject.common"></context:component-scan>
+	
+	<!-- 引入配置文件 -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath*:dubbo.properties</value>
+			    <value>classpath*:redis.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 配置使Spring采用CGLIB代理 -->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+	<import resource="dubbo-consumer.xml" />
+	
+	<import resource="dubbo-consumer-bill.xml" />
+    <import resource="dubbo-consumer-institution.xml" />
+    <import resource="dubbo-consumer-message.xml" />
+    <import resource="dubbo-consumer-recharge.xml" />
+    <import resource="dubbo-consumer-order.xml" />
+    <import resource="dubbo-consumer-site_page.xml" />
+    <import resource="dubbo-consumer-subject.xml" />
+    <import resource="dubbo-consumer-transfer.xml" />
+    <import resource="dubbo-consumer-user_center.xml" />
+	<import resource="dubbo-consumer-ods.xml" />
+	<import resource="dubbo-consumer-invoice.xml" />
+	<import resource="dubbo-consumer-mongoDB.xml" />
+	<!-- <import resource="spring-activemq.xml" /> -->
+	<import resource="spring-shiro.xml" />
+	
+	<!-- redis相关的注入 -->
+    <import resource="applicationContext-redis.xml" />
+
+</beans>
