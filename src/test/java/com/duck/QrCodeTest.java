@@ -10,7 +10,7 @@ public class QrCodeTest {
 	public void qrCode01() {
 		
 		String content = "http://www.163.com";
-		String imgPath = "d:/tmp/qrcode_163_1.png";
+		String imgPath = "d:/tmp/qrcode_163_2.png";
 		String imgType = "png";
 		int size = 10;
 		String charset = "utf-8";
@@ -25,7 +25,7 @@ public class QrCodeTest {
 	
 	@Test
 	public void decodeQrCode01() {
-		String imgPath = "d:/tmp/qrcode_163_1.png";
+		String imgPath = "d:/tmp/qrcode_163_2.png";
 		String charset = "utf-8";
 		
 		try {
